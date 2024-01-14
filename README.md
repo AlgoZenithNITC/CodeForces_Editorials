@@ -7,7 +7,7 @@
 Hint 2 :- After figuring out the range of numbers that satisfy the given constraints ,How is about excluding those numbers of Type-3 constraints that fall under this range that we previously computed.
 
 Code : (in c++)
-
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 int main()
@@ -49,8 +49,10 @@ int main()
     }
     return 0;
 }
+```
 
 Code: (in Java)
+```java
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -95,8 +97,10 @@ public class Main {
         }
     }
 }
+```
 
 Code: (in Python)
+```python
 t = int(input())
 
 for _ in range(t):
@@ -122,7 +126,7 @@ for _ in range(t):
             if lower_limit <= i <= upper_limit:
                 ans -= 1
         print(ans)
-
+```
 
 Time complexity  : - O(n) , since we are traversing whole n constraints at most twice.
 
@@ -150,7 +154,7 @@ Therfore , iterate over all 'i' (from o to K) values that can be possibly remove
  
 
 Code : (in c++) 
-
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -188,9 +192,9 @@ int main()
     }
     return 0;
 }
-
+```
 Code : (in Java) 
-
+```java
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -231,8 +235,9 @@ public class Main {
         }
     }
 }
-
+```
 Code: (in Python)
+```python
 t = int(input())
 
 for _ in range(t):
@@ -255,7 +260,7 @@ for _ in range(t):
             ans = max(ans, -1 * prev[n - i] + 2 * prev[n - i - x])
 
     print(ans)
-
+```
 
 
 Time complexity :- O( min(n,k) )
