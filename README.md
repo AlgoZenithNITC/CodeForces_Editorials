@@ -8,7 +8,7 @@ Hint 2 :- After figuring out the range of numbers that satisfy the given constra
 
 Code : (in c++)
 
- #include<bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 int main()
 {
