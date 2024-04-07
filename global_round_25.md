@@ -324,7 +324,19 @@ public class Main {
 <summary>Python</summary>
 
 ```python
-
+t = int(input())
+for _ in range(t):
+    n, m, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    a.sort()
+    ans = 0
+    tax = 0
+    for price in a:
+        buy = min(m, k)
+        ans += buy * (price + tax)
+        tax += buy
+        k -= buy
+    print(ans)
 ```
 
 </details>
@@ -333,7 +345,29 @@ public class Main {
 <summary>Cpp</summary>
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    int t; cin >> t;
+    while (t--) {
+        int n, m, k; cin >> n >> m >> k;
+        vector<int> a(n);
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+        sort(a.begin(), a.end());
+        int64_t ans = 0;
+        int tax = 0;
+        for (int i = 0; i < n; ++i) {
+            int buy = min(m, k);
+            ans += 1LL * buy * (a[i] + tax);
+            tax += buy;
+            k -= buy;
+        }
+        cout << ans << '\n';
+    }
+}
 ```
 
 </details>
@@ -342,7 +376,36 @@ public class Main {
 <summary>Java</summary>
 
 ```java
+import java.util.Arrays;
+import java.util.Scanner;
 
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        while (t-- > 0) {
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            int k = scanner.nextInt();
+
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = scanner.nextInt();
+            }
+            Arrays.sort(a);
+
+            long ans = 0;
+            int tax = 0;
+            for (int i = 0; i < n; ++i) {
+                int buy = Math.min(m, k);
+                ans += (long) buy * (a[i] + tax);
+                tax += buy;
+                k -= buy;
+            }
+            System.out.println(ans);
+        }
+    }
+}
 ```
 
 </details>
@@ -353,7 +416,17 @@ public class Main {
 <summary>Python</summary>
 
 ```python
-
+t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    if n < k:
+        print("NO")
+    elif n == k:
+        print("YES\n1\n1")
+    elif n < 2 * k - 1:
+        print("NO")
+    else:
+        print("YES\n2\n{} 1".format(n - k + 1))
 ```
 
 </details>
@@ -362,7 +435,24 @@ public class Main {
 <summary>Cpp</summary>
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    int t; cin >> t;
+    while (t--) {
+        int64_t n, k; cin >> n >> k;
+        if (n < k) {
+            cout << "NO\n";
+        } else if (n == k) {
+            cout << "YES\n1\n1\n";
+        } else if (n < 2 * k - 1) {
+            cout << "NO\n";
+        } else {
+            cout << "YES\n2\n" << n - k + 1 << " 1\n";
+        }
+    }
+}
 ```
 
 </details>
@@ -371,7 +461,27 @@ public class Main {
 <summary>Java</summary>
 
 ```java
+import java.util.Scanner;
 
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        while (t-- > 0) {
+            long n = scanner.nextLong();
+            long k = scanner.nextLong();
+            if (n < k) {
+                System.out.println("NO");
+            } else if (n == k) {
+                System.out.println("YES\n1\n1");
+            } else if (n < 2 * k - 1) {
+                System.out.println("NO");
+            } else {
+                System.out.println("YES\n2\n" + (n - k + 1) + " 1");
+            }
+        }
+    }
+}
 ```
 
 </details>
