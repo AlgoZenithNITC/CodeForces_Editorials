@@ -90,7 +90,42 @@ public class Main {
 <summary>Python</summary>
 
 ```python
+import sys
 
+MAXN = 400001
+l = [0] * MAXN
+r = [0] * MAXN
+sum = [0] * MAXN
+cnt = [0] * MAXN
+
+def solve():
+    n = int(sys.stdin.readline().strip())
+    for i in range(1, 2 * n + 1):
+        sum[i] = cnt[i] = 0
+    for i in range(1, n + 1):
+        l[i], r[i] = map(int, sys.stdin.readline().strip().split())
+        if l[i] == r[i]:
+            sum[l[i]] = 1
+            cnt[l[i]] += 1
+    for i in range(2, 2 * n + 1):
+        sum[i] += sum[i - 1]
+    result = []
+    for i in range(1, n + 1):
+        if l[i] == r[i]:
+            result.append("1" if cnt[l[i]] <= 1 else "0")
+        else:
+            result.append("1" if sum[r[i]] - sum[l[i] - 1] < r[i] - l[i] + 1 else "0")
+    print(''.join(result))
+
+def main():
+    input = sys.stdin.read
+    data = input().splitlines()
+    t = int(data[0])
+    for _ in range(t):
+        solve()
+
+if _name_ == "_main_":
+    main()
 ```
 
 </details>
@@ -99,7 +134,27 @@ public class Main {
 <summary>Cpp</summary>
 
 ```cpp
-
+#include <bits/stdc++.h>
+ 
+#define MAXN 400001
+int l[MAXN], r[MAXN], sum[MAXN], cnt[MAXN];
+void solve() {
+	int n; std::cin >> n;
+	for (int i = 1; i <= 2 * n; ++i) sum[i] = cnt[i] = 0;
+	for (int i = 1; i <= n; ++i) {
+		std::cin >> l[i] >> r[i];
+		if (l[i] == r[i]) sum[l[i]] = 1, ++cnt[l[i]];
+	}
+	for (int i = 2; i <= 2 * n; ++i) sum[i] += sum[i - 1];
+	for (int i = 1; i <= n; ++i) 
+		std::cout << ((l[i] == r[i] ? cnt[l[i]] <= 1 : sum[r[i]] - sum[l[i] - 1] < r[i] - l[i] + 1) ? "1" : "0");
+	std::cout << '\n';
+}
+int main() {
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(nullptr), std::cout.tie(nullptr);
+	int t; std::cin >> t; while (t--) solve(); return 0;
+}
 ```
 
 </details>
@@ -108,7 +163,48 @@ public class Main {
 <summary>Java</summary>
 
 ```java
+import java.util.Scanner;
 
+public class Main {
+    static final int MAXN = 400001;
+    static int[] l = new int[MAXN];
+    static int[] r = new int[MAXN];
+    static int[] sum = new int[MAXN];
+    static int[] cnt = new int[MAXN];
+
+    public static void solve(Scanner scanner) {
+        int n = scanner.nextInt();
+        for (int i = 1; i <= 2 * n; ++i) {
+            sum[i] = 0;
+            cnt[i] = 0;
+        }
+        for (int i = 1; i <= n; ++i) {
+            l[i] = scanner.nextInt();
+            r[i] = scanner.nextInt();
+            if (l[i] == r[i]) {
+                sum[l[i]] = 1;
+                ++cnt[l[i]];
+            }
+        }
+        for (int i = 2; i <= 2 * n; ++i) {
+            sum[i] += sum[i - 1];
+        }
+        StringBuilder result = new StringBuilder();
+        for (int i = 1; i <= n; ++i) {
+            result.append((l[i] == r[i] ? cnt[l[i]] <= 1 : sum[r[i]] - sum[l[i] - 1] < r[i] - l[i] + 1) ? "1" : "0");
+        }
+        System.out.println(result);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        while (t-- > 0) {
+            solve(scanner);
+        }
+        scanner.close();
+    }
+}
 ```
 
 </details>
@@ -119,7 +215,21 @@ public class Main {
 <summary>Python</summary>
 
 ```python
+import sys
 
+T = int(sys.stdin.readline().strip())
+
+for _ in range(T):
+    n, k = map(int, sys.stdin.readline().strip().split())
+    mul = n + 1
+    sum_ = 0
+    cur = 1
+    while n >= k:
+        if n & 1:
+            sum_ += cur
+        n >>= 1
+        cur <<= 1
+    print(mul * sum_ // 2)
 ```
 
 </details>
@@ -128,7 +238,28 @@ public class Main {
 <summary>Cpp</summary>
 
 ```cpp
-
+#include <bits/stdc++.h>
+#define int long long
+ 
+using namespace std;
+ 
+int T;
+int n, k;
+ 
+signed main() {
+	cin >> T;
+	while (T--) {
+		cin >> n >> k;
+		int mul = n + 1, sum = 0, cur = 1;
+		while (n >= k) {
+			if (n & 1) sum += cur;
+			n >>= 1;
+			cur <<= 1;
+		}
+		cout << mul * sum / 2 << endl;
+	}
+	return 0;
+}
 ```
 
 </details>
@@ -137,6 +268,26 @@ public class Main {
 <summary>Java</summary>
 
 ```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long T = scanner.nextLong();
+        while (T-- > 0) {
+            long n = scanner.nextLong();
+            long k = scanner.nextLong();
+            long mul = n + 1, sum = 0, cur = 1;
+            while (n >= k) {
+                if ((n & 1) == 1) sum += cur;
+                n >>= 1;
+                cur <<= 1;
+            }
+            System.out.println(mul * sum / 2);
+        }
+        scanner.close();
+    }
+}
 
 ```
 
